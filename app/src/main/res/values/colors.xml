@@ -2,4 +2,6 @@
 <resources>
 	<color name="colorPrimary">#accaaa</color>
 	<color name="colorPrimaryDark">#acccca</color>
+	<color name="grey_500">#addeca</color>
+	<color name="primary">#bccfaa</color>
 </resources>

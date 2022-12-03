@@ -25,6 +25,7 @@ List<Calls> calls=new ArrayList<>();
 		return v;
 	}
 public void initCalls(){
+	calls.clear();
 	Calls c;
 	c=new Calls();
 	c.setCallerName("Rohit Patidar");

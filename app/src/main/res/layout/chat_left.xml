@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+	android:padding="8dp">
+    <TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:maxWidth="250dp"
+		android:paddingLeft="16dp"
+		android:paddingRight="8dp"
+		android:textSize="12sp"
+		android:id="@+id/chat_msg"
+		android:layout_alignParentLeft="true"
+		android:text="Aide Works"
+		android:background="@drawable/incoming_chat_bubble"
+		/>
+</RelativeLayout>
