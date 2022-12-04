@@ -39,6 +39,7 @@ public class ChatUser extends AppCompatActivity
 	}
 	public void initList()
 	{
+		list.clear();
 		for (Chats c:ChatsFragment.chats)
 		{
 			if(c.getReceiver().equals(receiver) 
