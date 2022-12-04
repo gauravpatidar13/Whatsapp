@@ -16,15 +16,15 @@ public class ChatsFragment extends Fragment implements View.OnClickListener
 	ChatShowLastMessageAdapter adapter;
 	FloatingActionButton fab;
 	User currentUser=new User();
-HashMap<String,String> recv=new HashMap<>();
+	HashMap<String,String> recv=new HashMap<>();
 	List<ChatLastMessage> lmsg=new ArrayList<>();
 	static List<Chats> chats=new ArrayList<>();
 
 	@Override
 	public void onClick(View p1)
 	{
-	
-		Intent i=new Intent(getActivity(),ChatUserList.class);
+
+		Intent i=new Intent(getActivity(), ChatUserList.class);
 		startActivity(i);
 	}
 
@@ -41,12 +41,13 @@ HashMap<String,String> recv=new HashMap<>();
 		initChatList();
 		initLastMsgs();
 		getLastMsgsFromHashMap();
-		adapter=new ChatShowLastMessageAdapter(lmsg);
+		adapter = new ChatShowLastMessageAdapter(lmsg);
 		rec.setAdapter(adapter);
 		return v;
 	}
 	public void initChatList()
 	{
+		chats.clear();
 		chats.add(new Chats("Gaurav Patidar", "Harshita Kadotiya", "Hi Harshu"));
 		chats.add(new Chats("Kuldeep Patidar", "Gaurav Patidar", "Whats's Bro"));
 		chats.add(new Chats("Rohit Patidar", "Gaurav Patidar", "Mandsaur City"));
@@ -57,39 +58,59 @@ HashMap<String,String> recv=new HashMap<>();
 		chats.add(new Chats("Rohit Patidar", "Gaurav Patidar", "Bamora"));
 		chats.add(new Chats("Rohit Patidar", "Gaurav Patidar", "Aide Works"));
 		chats.add(new Chats("Harshita Kadotiya", "Gaurav Patidar", "Singing Harshu,Harshu rhythm empire"));
-		
+
 	}
-	public void getLastMsgsFromHashMap(){
+
+	@Override
+	public void onResume()
+	{
+
+		super.onResume();
 		
+		initLastMsgs();
+		getLastMsgsFromHashMap();
+		adapter.notifyDataSetChanged();
+	}
+	
+	public void getLastMsgsFromHashMap()
+	{
+		lmsg.clear();
+
 		Set<String> keys=recv.keySet();
-		for(String k:keys){
+		for (String k:keys)
+		{
 			String msg=recv.get(k);
-		int i=	k.indexOf("_");
-		String part1=k.substring(0,i);
-		String part2=k.substring(i+1);
-		String sender=null;
-		if(part1.equals(currentUser.getName()))
-			sender=part2;
+			int i=	k.indexOf("_");
+			String part1=k.substring(0, i);
+			String part2=k.substring(i + 1);
+			String sender=null;
+			if (part1.equals(currentUser.getName()))
+				sender = part2;
 			else
-			sender=part1;
-			lmsg.add(new ChatLastMessage(msg,sender));
+				sender = part1;
+			lmsg.add(new ChatLastMessage(msg, sender));
 		}
 	}
-	public void initLastMsgs(){
+	public void initLastMsgs()
+	{
+		recv.clear();
 		int l=chats.size();
-		for(int k=l-1;k>=0;k--){
+		for (int k=l - 1;k >= 0;k--)
+		{
 			Chats c=chats.get(k);
-			if(c.getSender().equals(currentUser.getName())){
-				if(!recv.containsKey(c.getSender()+"_"+c.getReceiver()))
+			if (c.getSender().equals(currentUser.getName()))
+			{
+				if (!recv.containsKey(c.getSender() + "_" + c.getReceiver()))
 				{
-				recv.put(c.sender+"_"+c.getReceiver(),c.getMessage());
+					recv.put(c.sender + "_" + c.getReceiver(), c.getMessage());
 				}
 			}
-			else if(c.getReceiver().equals(currentUser.getName()))
+			else if (c.getReceiver().equals(currentUser.getName()))
 			{
-				if(!recv.containsKey(c.getReceiver()+"_"+c.getSender())){
-				recv.put(c.getReceiver()+"_"+c.getSender(),c.getMessage());
-			}}
+				if (!recv.containsKey(c.getReceiver() + "_" + c.getSender()))
+				{
+					recv.put(c.getReceiver() + "_" + c.getSender(), c.getMessage());
+				}}
 		}
 	}
 }

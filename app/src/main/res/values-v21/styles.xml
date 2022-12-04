@@ -3,4 +3,5 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
 	</style>
+	
 </resources>

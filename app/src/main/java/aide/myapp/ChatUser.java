@@ -6,8 +6,11 @@ import android.widget.*;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.*;
 import java.util.*;
+import android.support.design.widget.*;
+import android.view.View.*;
+import android.view.*;
 
-public class ChatUser extends AppCompatActivity
+public class ChatUser extends AppCompatActivity implements View.OnClickListener
 {
 	RecyclerView recv;
 	EditText edtMsg;
@@ -16,7 +19,27 @@ public class ChatUser extends AppCompatActivity
 	Toolbar toolbar;
 	ChatsAdapter ada;
 	String receiver;
+	FloatingActionButton fab;
 	List<Chats> list=new ArrayList<>();
+	
+	@Override
+	public void onClick(View p1)
+	{
+		String msg_to_send=edtMsg.getText().toString();
+		if (msg_to_send != null && !msg_to_send.isEmpty())
+		{
+			Chats nc=new Chats(currentUser.getName(), chatUser
+							   .getName(), msg_to_send);
+			ChatsFragment.chats.add(nc);
+			list.add(nc);
+			ada.notifyItemInserted(list.size() - 1);
+		}
+		else
+		{
+			Toast.makeText(this, "can not send empty message", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -26,6 +49,8 @@ public class ChatUser extends AppCompatActivity
 		setSupportActionBar(toolbar);
 		recv = (RecyclerView)findViewById(R.id.chat_user_rv);
 		edtMsg = (EditText)findViewById(R.id.chat_user_edt_msg);
+		fab=(FloatingActionButton)findViewById(R.id.fab_send);
+		fab.setOnClickListener(this);
 		receiver = getIntent().getStringExtra("rn");
 		chatUser = new User();
 		chatUser.setName(receiver);

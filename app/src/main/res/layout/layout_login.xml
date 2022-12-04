@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+	<android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+		android:background="@color/colorPrimary"
+	/>
+<LinearLayout
+	android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+	android:gravity="center_vertical"
+	>
+	<android.support.design.widget.TextInputLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="12dp"
+		
+		>
+    <android.support.design.widget.TextInputEditText
+		android:hint="Enter Email"
+		android:id="@+id/login_email"
+		android:inputType="textEmailAddress"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"	
+		/>
+	</android.support.design.widget.TextInputLayout>
+	<android.support.design.widget.TextInputLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="12dp"
+
+	>
+		<android.support.design.widget.TextInputEditText
+			android:hint="Enter Password"
+			android:id="@+id/login_pass"
+			android:inputType="textPassword"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"	
+		/>
+	</android.support.design.widget.TextInputLayout>
+	<Button
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"	
+		android:text="Login"
+		android:id="@+id/loginButton"
+		/>
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"	
+		android:text="Create An Account."
+		android:textSize="10sp"
+		android:id="@+id/loginTextView"
+		android:layout_marginTop="12dp"
+		android:textStyle="bold"
+		android:gravity="center_horizontal"/>
+</LinearLayout>
+</LinearLayout>
